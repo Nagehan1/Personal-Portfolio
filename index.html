@@ -193,7 +193,8 @@
       <p>Copyright @ Nagehan. Made with <i class="fa-solid fa-heart"></i> by CYF experience.</p>
     </div>
   </div>
- <script>
+ 
+  <script>
     var tablinks = document.getElementsByClassName("tab-links");
     var tabcontents = document.getElementsByClassName("tab-contents");
 
@@ -210,3 +211,35 @@
   </script>
 
   <script>
+
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu() {
+      sidemenu.style.right = "0";
+    }
+
+    function closemenu() {
+      sidemenu.style.right = "-200px";
+    }
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxEOSDm2X4CQKbcAFLb9-g-WS0OBxr0HpjKgkcGZvUUrhgxq8c0I5HKjuM26_cb91HfeQ/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const message = document.getElementById("message")
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          message.innerHTML = "Message sent Successfully"
+          setTimeout(function () {
+            message.innerHTML = ""
+          }, 5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+
+</html>
